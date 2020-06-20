@@ -1,0 +1,58 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Hey!{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> Hey!</a>
+        </div>
+        <div class="navbar-collapse collapse ">
+            <ul class="nav navbar-nav navbar-right">
+                <li><form class="form-inline" action="/action_page.php">
+                    <input class="form-control mr-sm-2" style="margin-top: 7.5px" type="text" placeholder="Search">
+                    </form>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.user', username=current_user.username) }}">
+                        <span class="glyphicon glyphicon-notifications"></span>
+                        Notifications
+                    </a>
+                </li>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Sign
+                    Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}"><span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a href="{{ url_for('main.user', username=current_user.username) }}">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Profile
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<div class="content">
+    {% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        {% block page_content %}{% endblock %}
+    </div>
+    {% endblock %}
+</div>
