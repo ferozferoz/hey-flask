@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_pagedown import PageDown
+from flask_migrate import Migrate
 
 
 bootstrap = Bootstrap()
@@ -16,7 +17,7 @@ login_manager.login_view = 'auth.login'
 mail = Mail()
 moment = Moment()
 pagedown = PageDown()
-
+migrate = Migrate()
 
 
 def create_app(config_name):
@@ -29,6 +30,7 @@ def create_app(config_name):
     mail.init_app(app)
     moment.init_app(app)
     pagedown.init_app(app)
+    migrate.init_app(app,db)
     # attach routes and custom error pages here
     from .main import main as main_blueprint
     from .auth import auth as auth_blueprint
