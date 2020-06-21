@@ -1,1 +1,1 @@
-web: gunicorn hey-flasky:app
+web: gunicorn manage:app
