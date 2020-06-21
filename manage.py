@@ -29,3 +29,6 @@ def deploy():
 if __name__ == '__main__':
     manager.run()
     db.create_all()
+    Role.insert_roles()
+    # create self follow for all users
+    User.add_self_follow()
