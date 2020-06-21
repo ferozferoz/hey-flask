@@ -1,6 +1,5 @@
 from flask import flash, render_template , redirect , url_for  ,current_app,request
 from flask_login import login_required,current_user
-
 from . import main
 from .. import db
 from ..models import User, Post
