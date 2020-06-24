@@ -5,7 +5,8 @@ from app.models import User, Role
 from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+#app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+app = create_app('default')
 manager = Manager(app)
 migrate=Migrate(app,db)
 
@@ -28,7 +29,3 @@ def deploy():
 
 if __name__ == '__main__':
     manager.run()
-    db.create_all()
-    Role.insert_roles()
-    # create self follow for all users
-    User.add_self_follow()
