@@ -7,14 +7,14 @@
 {% endblock %}
 {% block navbar %}
 <div class="navbar navbar-default" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> Hey!</a>
         </div>
         <div class="navbar-collapse collapse ">
             <ul class="nav navbar-nav navbar-right">
                 <li><form class="form-inline" action="/action_page.php">
-                    <input class="form-control mr-sm-2" style="margin-top: 7.5px" type="text" placeholder="Search">
+                    <input class="form-control mr-sm-2" style="margin-top: 7.5px" type="text" placeholder="find people">
                     </form>
                 </li>
                 <li>
@@ -45,7 +45,7 @@
 {% endblock %}
 <div class="content">
     {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
